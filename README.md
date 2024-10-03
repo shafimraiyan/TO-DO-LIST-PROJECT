@@ -52,6 +52,11 @@ To run this project, you'll need a web browser that supports LocalStorage (moder
  - HTML5: For structuring the web page.
  - CSS3: For styling and layout.
  - JavaScript: For adding dynamic functionality and interaction with the user.
+
+## Video Demo
+
+Watch the project in action [https://youtu.be/Yh_cUvQ0qB4]
+
  
 ## Authors
 
