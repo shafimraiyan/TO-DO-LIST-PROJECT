@@ -3,37 +3,37 @@ let listElement = document.getElementById('list-container');
 
 function addTask() {
     if (inputElement.value === '') {
-        alert("You Must Write Something :(");
+        alert("Please enter a task!");
     } else {
         let listItem = document.createElement("li");
         listItem.innerHTML = inputElement.value;
-        listElement.appendChild(listItem);
 
         let span = document.createElement("span");
-        span.innerHTML = "&times;";  // Correct HTML entity for "×"
+        span.innerHTML = "&times;";
+        span.onclick = function() {
+            listItem.remove();
+            saveTasks();
+        };
+
         listItem.appendChild(span);
+        listElement.appendChild(listItem);
+
+        listItem.onclick = function() {
+            listItem.classList.toggle("checked");
+            saveTasks();
+        };
+
+        inputElement.value = '';
+        saveTasks();
     }
-    inputElement.value = '';
-    saveTask();
 }
 
-listElement.addEventListener("click", function(e) {
-    if (e.target.tagName === "LI") {
-        e.target.classList.toggle("checked");
-        saveTask();
-    } else if (e.target.tagName === "SPAN") {
-        e.target.parentElement.remove();
-        saveTask();
-    }
-}, false);
-
-function saveTask() {
-    localStorage.setItem("data", listElement.innerHTML);
+function saveTasks() {
+    localStorage.setItem("tasks", listElement.innerHTML);
 }
 
-function show() {
-    listElement.innerHTML = localStorage.getItem("data");
+function loadTasks() {
+    listElement.innerHTML = localStorage.getItem("tasks");
 }
 
-show();
-
+loadTasks();
